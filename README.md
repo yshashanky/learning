@@ -1,2 +1,6 @@
 # learning
-Solved challenges
+Solved challenges:
+
+- Dicee Challenge
+- Drum Kit Challenge
+- Simon Game Challenge
