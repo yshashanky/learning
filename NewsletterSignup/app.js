@@ -36,10 +36,17 @@ app.post("/", function (req, res) {
     const url = "https://us21.api.mailchimp.com/3.0/lists/6d77504529"
     const options = {
         method: "POST",
-        auth: "yshashanky:fb5518e182a9ce09a4868d0ca28492f0-us21"
+        auth: "yshashanky:b15c87efde525487d3840725df3ca3ef-us21"
     }
 
     const request = https.request(url, options, function(response){
+
+        if (response.statusCode === 200) {
+            res.sendFile(__dirname + "/success.html");
+        }else{
+            res.sendFile(__dirname + "/failure.html");
+        }
+
         response.on("data", function(data){
             console.log(JSON.parse(data));
         });
@@ -49,7 +56,11 @@ app.post("/", function (req, res) {
     request.end();
 });
 
-app.listen(3000, function () {
+app.post("/failure", function(req, res){
+    res.redirect("/");
+});
+
+app.listen(process.env.PORT || 3000, function () {
     console.log("server is running on port 3000...");
 });
 
