@@ -36,27 +36,27 @@ app.post("/", function (req, res) {
     const url = "https://us21.api.mailchimp.com/3.0/lists/6d77504529"
     const options = {
         method: "POST",
-        auth: "yshashanky:a0241ccd1d019d49aef7d93da9801256-us21"
+        auth: "yshashanky:key"
     }
 
-    const request = https.request(url, options, function(response){
+    const request = https.request(url, options, function (response) {
 
         if (response.statusCode === 200) {
             res.sendFile(__dirname + "/success.html");
-        }else{
+        } else {
             res.sendFile(__dirname + "/failure.html");
         }
 
-        response.on("data", function(data){
+        response.on("data", function (data) {
             console.log(JSON.parse(data));
         });
     });
-    
+
     request.write(jsonData);
     request.end();
 });
 
-app.post("/failure", function(req, res){
+app.post("/failure", function (req, res) {
     res.redirect("/");
 });
 
