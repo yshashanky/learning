@@ -1,3 +1,5 @@
+//express template
+
 const express = require("express");
 const bodyParser = require("body-parser");
 
@@ -9,4 +11,4 @@ app.get("/", function(req, res){
 
 app.listen(3000, function(req, res){
     console.log("Server started on port 3000")
-});
+}); 
