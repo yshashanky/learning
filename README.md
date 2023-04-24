@@ -6,4 +6,5 @@
 - Pokemon Challenge
 - Newsletter Signup Page
 - To do List Version 1
-- JQuery, Node and Express intro
+- Blog Website Challenge
+- JQuery, Node, Express, EJS
