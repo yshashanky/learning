@@ -5,9 +5,9 @@
         <%= content %>
     </p>
 
-    <%for(var i=0; i<postsList.length; i++){%>
-        <p><%= postsList[i].title %></p>
-        <p><%= postsList[i].content %></p>
-    <%}%>
+    <%postsList.forEach(function(post){%>
+        <h1><%= post.title %></h1>
+        <p><%= post.content %></p>
+    <%})%>
 
 <%- include('partials/footer') %>
