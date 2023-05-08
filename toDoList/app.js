@@ -7,7 +7,6 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("./public"));
 
-const items = ["Eat", "Sleep", "Repeat"];
 const workItems = [];
 
 mongoose.connect("mongodb://127.0.0.1:27017/todolistDB", { useNewUrlParser: true });
@@ -32,10 +31,17 @@ const defaultItem3 = new Item({
 
 const defaultItem = [defaultItem1, defaultItem2, defaultItem3];
 
-Item.insertMany(defaultItem);
-
 app.get("/", function (req, res) {
-    res.render('list', { listTitle: "Today", newListItems: items });
+
+    Item.find().then((foundItems) => {
+
+        if (foundItems.length == 0) {
+            Item.insertMany(defaultItem);
+            res.redirect("/");
+        } else {
+            res.render('list', { listTitle: "Today", newListItems: foundItems });
+        }; 
+    });
 });
 
 app.get("/work", function (req, res) {
@@ -43,14 +49,30 @@ app.get("/work", function (req, res) {
 });
 
 app.post("/", function (req, res) {
-    const item = req.body.item;
-    if (req.body.list === "Work List") {
-        workItems.push(item);
-        res.redirect("/work");
-    } else {
-        items.push(item);
-        res.redirect("/");
-    }
+    const itemName = req.body.item;
+
+    const item = new Item({
+        name: itemName
+    });
+
+    Item.create(item);
+    res.redirect("/");
+
+    // if (req.body.list === "Work List") {
+    //     workItems.push(item);
+    //     res.redirect("/work");
+    // } else {
+    //     items.push(item);
+    //     res.redirect("/");
+    // }
+});
+
+
+app.post("/delete", function (req, res) {
+    const deletedItem = req.body.delItem;
+
+    Item.findOneAndDelete({ _id: deletedItem }).exec();
+    res.redirect("/");
 });
 
 app.listen(3000, function (req, res) {
