@@ -63,8 +63,7 @@ app.get("/:customListName", function (req, res) {
     List.find({name: customListName}).then((foundList) => {
         if (foundList.length == 0){
             List.create(list);
-            const path = "/".concat(customListName);
-            res.redirect(path);
+            res.redirect("/".concat(customListName));
         } else {
             res.render('list', { listTitle: foundList[0].name, newListItems: foundList[0].items });
         };
