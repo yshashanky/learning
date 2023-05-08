@@ -73,29 +73,41 @@ app.get("/:customListName", function (req, res) {
 
 app.post("/", function (req, res) {
     const itemName = req.body.item;
+    const listName = req.body.list;
+    console.log(listName);
 
     const item = new Item({
         name: itemName
     });
 
-    Item.create(item);
-    res.redirect("/");
-
-    // if (req.body.list === "Work List") {
-    //     workItems.push(item);
-    //     res.redirect("/work");
-    // } else {
-    //     items.push(item);
-    //     res.redirect("/");
-    // }
+    if (listName === "Today"){
+        item.save();
+        res.redirect("/");
+    } else {
+        List.findOne({name: listName}).then((foundList) => {
+            foundList.items.push(item);
+            foundList.save();
+            res.redirect("/".concat(listName));
+        })
+    };
 });
 
 
 app.post("/delete", function (req, res) {
     const deletedItem = req.body.delItem;
+    const listName = req.body.listName;
 
-    Item.findOneAndDelete({ _id: deletedItem }).exec();
-    res.redirect("/");
+    if (listName === "Today"){
+        Item.findOneAndDelete({ _id: deletedItem }).exec();
+        res.redirect("/");
+    } else {
+        List.findOneAndUpdate({name: listName}, {$pull: {items: {_id: deletedItem}}})
+        .then((foundList) => {
+            console.log(foundList)
+            res.redirect("/".concat(listName));
+        });
+    };
+
 });
 
 app.listen(3000, function (req, res) {
