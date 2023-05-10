@@ -16,6 +16,29 @@ const articleSchema = {
 
 const Article = mongoose.model("Article", articleSchema);
 
+app.get("/articles", function(req, res){
+    Article.find().then((articles) => {
+        res.send(articles);
+    });
+});
+
+app.post("/articles", function(req, res){
+    
+    const newArticle = new Article({
+        title: req.body.title,
+        content: req.body.content
+    });
+
+    newArticle.save().then((data) => {
+        res.send("Success");
+    });
+});
+
+app.delete("/articles", function(req, res){
+    Article.deleteMany().then((data) => {
+        res.send("Success")
+    });
+});
 
 app.listen(3000, function (req, res) {
     console.log("Server started on port 3000");
