@@ -39,6 +39,23 @@ app.route("/articles")
         });
     });
 
+app.route("/articles/:articleTitle")
+    .get(function(req, res){
+        Article.findOne({title: req.params.articleTitle}).then((articles) => {
+            res.send(articles);
+        });
+    })
+    .put(function(req, res){
+        Article.findOneAndUpdate(
+            {title: req.params.articleTitle},
+            {title: req.body.title, content: req.body.content},
+            {upsert: true}
+            ).then((articles) => {
+                res.send(articles);
+            });
+    });
+
+
 app.listen(3000, function (req, res) {
     console.log("Server started on port 3000");
 });
