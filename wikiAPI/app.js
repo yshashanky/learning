@@ -53,6 +53,11 @@ app.route("/articles/:articleTitle")
             ).then((articles) => {
                 res.send(articles);
             });
+    })
+    .delete(function(req, res){
+        Article.deleteOne({title: req.params.articleTitle}).then((data) => {
+            res.send("Success")
+        });
     });
 
 
