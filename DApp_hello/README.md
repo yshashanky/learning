@@ -70,3 +70,19 @@ If you are hosting frontend code somewhere without using DFX, you may need to ma
 - Upon restart you will be prompted to setup an ubuntu username and password and then you will have successfully installed WSL. (Keep a note of both of these pieces of information, you’ll need it later on).
 - To confirm that everything worked correctly, type the following command into PowerShell: wsl --list --verbose
 - You should see ubuntu version.
+
+#### VSCode:
+
+- Download and install the latest version of VSCode from here: https://code.visualstudio.com/
+- Install the Motoko language extension in VSCode (make sure it’s from the Dfinity team, or just use the following link: https://marketplace.visualstudio.com/items?itemName=dfinity-foundation.vscode-motoko)
+- Install the Remote WSL extension: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl
+
+#### Homebrew:
+
+- Search and open up Ubuntu from the Start menu
+- Type the following command to install homebrew (Alternatively copy it from the homebrew website https://brew.sh/): /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+- NOTE: Homebrew will make it easier for us to install other tools such as node. You might already have node installed on your windows system but because we’re working with WSL, you’ll need to install it on the linux system too.
+- When prompted enter the password for the user that you set previously.
+- The installer will tell you how to add brew to the PATH. Copy the  commands they list and run them one by one in Ubuntu.
+- Also run the command under the line “Install Homebrew’s dependencies if you have sudo access”: sudo apt-get install build-essential
+- Check that everything worked by typing the command: brew -version
