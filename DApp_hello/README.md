@@ -102,3 +102,28 @@ If you are hosting frontend code somewhere without using DFX, you may need to ma
 - Paste the formatted command from the previous step and hit enter.
 - echo "${PATH//:/$'\n'}"
 - dfx --version
+
+#### Test Everything Worked by Creating and Deploying your First DApp: 
+
+##### Create the Default Hello DApp:
+
+- Open up Ubuntu from the start menu and create a new folder called ic-projects using the following command: mkdir ic-projects
+- Change directory into that folder using the command: cd ic-projects
+- Inside this ic-projects folder, we’re going to create our first Internet Computer DApp using the following command: dfx new hello
+- You can see this new project and folders by running the following command: explorer.exe .
+- Open up VSCode and click on the green icon on the bottom left.
+- Select Connect WSL Window 
+- Inside the new window go to your Extensions panel and select the Remote WSL extension, click on Install in WSL: Ubuntu
+- Now take a look through the files inside the src folder. The main.mo is the Motoko file that we’ll be writing most of our code in.
+
+##### Deploy the DApp:
+- Go to Terminal → New Terminal
+- In the Terminal, run the following command to start the local dfx: dfx start
+- Once you see the line INFO Starting server. Listening on blah blah blah, then split out another terminal
+- In the new terminal pane, run the following command to deploy your hello project: dfx deploy
+- Finally, once that’s done, run the following command: npm start
+- NOTE: If getting error while running "npm start" then close all the terminals; open new terminal and run following commands:
+    - npm install --save-dev webpack-cli
+    - npm upgrade --save-dev webpack-cli
+- AFter this follow first 4 steps in order, it will work
+- Now you’re ready to see your hello project, open up your browser and go to: http://localhost:8080/
