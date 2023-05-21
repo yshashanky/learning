@@ -86,3 +86,19 @@ If you are hosting frontend code somewhere without using DFX, you may need to ma
 - The installer will tell you how to add brew to the PATH. Copy the  commands they list and run them one by one in Ubuntu.
 - Also run the command under the line “Install Homebrew’s dependencies if you have sudo access”: sudo apt-get install build-essential
 - Check that everything worked by typing the command: brew -version
+
+#### Node:
+
+- Install node using homebrew with the following command (replace 18 with current LTS): brew install node@18
+- Run following command to link node (replace 18 with current LTS): brew link node@18
+- Once it’s done check that it worked with: node -version
+
+#### DFX:
+
+- Open up Ubuntu from the Start menu
+- Run the following command into your terminal and hit enter to install DFX: DFX_VERSION=0.9.3 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
+- After DFX has installed it will tell you where it was installed.
+- Copy the installation path you got from the last step and replace <REPLACE WITH YOUR INSTALLATION PATH> from the command below (You can use Notepad for this): export PATH=$PATH:<REPLACE WITH YOUR INSTALLATION PATH>
+- Paste the formatted command from the previous step and hit enter.
+- echo "${PATH//:/$'\n'}"
+- dfx --version
