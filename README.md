@@ -12,3 +12,4 @@
 - Secrets app
 - Keeper app
 - JQuery, Node, Express, EJS, ReactJS, MongoDB
+- DApp_hello - Setup for Web3 Decentralised App (DApp) Development with the Internet Computer and a test application
