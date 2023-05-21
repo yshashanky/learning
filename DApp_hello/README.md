@@ -98,7 +98,7 @@ If you are hosting frontend code somewhere without using DFX, you may need to ma
 - Open up Ubuntu from the Start menu
 - Run the following command into your terminal and hit enter to install DFX: DFX_VERSION=0.9.3 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"
 - After DFX has installed it will tell you where it was installed.
-- Copy the installation path you got from the last step and replace <REPLACE WITH YOUR INSTALLATION PATH> from the command below (You can use Notepad for this): export PATH=$PATH:<REPLACE WITH YOUR INSTALLATION PATH>
+- Copy the installation path you got from the last step and replace {REPLACE WITH YOUR INSTALLATION PATH} from the command below (You can use Notepad for this): export PATH=$PATH:{REPLACE WITH YOUR INSTALLATION PATH}
 - Paste the formatted command from the previous step and hit enter.
 - echo "${PATH//:/$'\n'}"
 - dfx --version
