@@ -126,4 +126,4 @@ If you are hosting frontend code somewhere without using DFX, you may need to ma
     - npm install --save-dev webpack-cli
     - npm upgrade --save-dev webpack-cli
 - AFter this follow first 4 steps in order, it will work
-- Now you’re ready to see your hello project, open up your browser and go to: http://localhost:8080/
+- Now you’re ready to see your hello project, open up your browser and go to: http://localhost:8080/ (You can confirm for port from terminal after running "npm start" )
