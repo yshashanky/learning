@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Canvas</title>
+        <style>
+            html{
+                font-family: 'Comic Sans MS';
+                text-align: center;
+            }
+            body{
+                background: lightblue;
+            }
+            canvas{
+                background: white;
+                width: 300px;
+                height: 300px;
+            }
+        </style>
+    </head>
+    <body onload="main()">
+        <h1>Intro to canvas</h1>
+        <canvas id="canvas"></canvas>
+        <br>
+        <!-- <button onclick="main()">Draw Line</button>
+        <button onclick="drawCircle()">Draw Circle</button>
+        <button onclick="drawPattern()">Draw Pattern</button>
+        <button onclick="drawPolygon(100, 200)">Draw Polygon</button> -->
+
+        <script>
+
+            function main(){
+                var c = document.getElementById("canvas");
+                var ctx = c.getContext("2d");
+                ctx.canvas.width = 300;
+                ctx.canvas.height = 300;
+
+                var location = [150, 150];
+                // drawHouseAsImage(ctx, location);
+                drawHouse(ctx, location, 1);
+                drawHouse(ctx, location, 0.4);
+
+            }
+
+            function drawHouseAsImage(ctx, location){
+                var img = new Image;
+                img.src = "./img.png";
+                var size = 100;
+                img.onload = function(){
+                    ctx.drawImage(img, location[0]-size/2, location[1]-size/2, size, size)
+                }
+            }
+
+            function drawHouse(ctx, location, size){
+
+                // Wall
+                ctx.beginPath();
+                ctx.moveTo(-50*size+location[0],-20*size+location[1]);
+                ctx.lineTo(50*size+location[0],-20*size+location[1]);
+                ctx.lineTo(50*size+location[0],50*size+location[1]);
+                ctx.lineTo(-50*size+location[0],50*size+location[1]);
+                ctx.lineTo(-50*size+location[0],-20*size+location[1]);
+                ctx.fillStyle='blue';
+                ctx.fill();
+                ctx.stroke();
+
+                // Roof
+                ctx.beginPath();
+                ctx.moveTo(-50*size+location[0],-20*size+location[1]);
+                ctx.lineTo(0*size+location[0],-60*size+location[1]);
+                ctx.lineTo(50*size+location[0],-20*size+location[1]);
+                ctx.moveTo(-50*size+location[0],-20*size+location[1]);
+                ctx.fillStyle='purple';
+                ctx.fill();
+                ctx.stroke();
+
+                // Door
+                ctx.beginPath();
+                ctx.moveTo(-30*size+location[0],10*size+location[1]);
+                ctx.lineTo(-10*size+location[0],10*size+location[1]);
+                ctx.lineTo(-10*size+location[0],50*size+location[1]);
+                ctx.lineTo(-30*size+location[0],50*size+location[1]);
+                ctx.lineTo(-30*size+location[0],10*size+location[1]);
+                ctx.fillStyle='brown';
+                ctx.fill();
+                ctx.stroke();
+
+                //Windows
+                ctx.beginPath();
+                ctx.moveTo(10*size+location[0],-10*size+location[1]);
+                ctx.lineTo(40*size+location[0],-10*size+location[1]);
+                ctx.lineTo(40*size+location[0],20*size+location[1]);
+                ctx.lineTo(10*size+location[0],20*size+location[1]);
+                ctx.lineTo(10*size+location[0],-10*size+location[1]);
+                ctx.fillStyle='lightblue';
+                ctx.fill();
+                ctx.stroke();
+            }
+
+            function drawHouseTranslate(ctx){
+                
+                // translates the canvas
+                ctx.translate(150,150);
+
+                // Wall
+                ctx.beginPath();
+                ctx.moveTo(-50,-20);
+                ctx.lineTo(50,-20);
+                ctx.lineTo(50,50);
+                ctx.lineTo(-50,50);
+                ctx.lineTo(-50,-20);
+                ctx.fillStyle='blue';
+                ctx.fill();
+                ctx.stroke();
+
+                // Roof
+                ctx.beginPath();
+                ctx.moveTo(-50,-20);
+                ctx.lineTo(0,-60);
+                ctx.lineTo(50,-20);
+                ctx.moveTo(-50,-20);
+                ctx.fillStyle='purple';
+                ctx.fill();
+                ctx.stroke();
+
+                // Door
+                ctx.beginPath();
+                ctx.moveTo(-30,10);
+                ctx.lineTo(-10,10);
+                ctx.lineTo(-10,50);
+                ctx.lineTo(-30,50);
+                ctx.lineTo(-30,10);
+                ctx.fillStyle='brown';
+                ctx.fill();
+                ctx.stroke();
+
+                //Windows
+                ctx.beginPath();
+                ctx.moveTo(10,-10);
+                ctx.lineTo(40,-10);
+                ctx.lineTo(40,20);
+                ctx.lineTo(10,20);
+                ctx.lineTo(10,-10);
+                ctx.fillStyle='lightblue';
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.translate(-150,-150);
+
+            }
+
+            // function drawLine(){
+            //     var c = document.getElementById("canvas");
+            //     var ctx = c.getContext("2d");
+            //     ctx.canvas.width = 300;
+            //     ctx.canvas.height = 300;
+            //     ctx.beginPath();
+            //     ctx.moveTo(0,0);
+            //     ctx.lineTo(300,150);
+            //     ctx.stroke();
+            // }
+
+            // function drawCircle(){
+            //     var c = document.getElementById("canvas");
+            //     var ctx = c.getContext("2d");
+            //     ctx.canvas.width = 300;
+            //     ctx.canvas.height = 300;
+            //     ctx.beginPath();
+            //     ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+            //     ctx.stroke();
+            // }
+
+            // function drawPolygon(radius, sides){
+            //     var c = document.getElementById("canvas");
+            //     var ctx = c.getContext("2d");
+            //     ctx.canvas.width = 300;
+            //     ctx.canvas.height = 300;
+            //     ctx.beginPath();
+            //     for(var i=0;i<=2*Math.PI;i+=Math.PI/sides){
+            //         var x = 110 + Math.cos(i)*radius;
+            //         var y = 110 + Math.sin(i)*radius;
+            //         ctx.lineTo(x,y);
+            //     }
+            //     ctx.stroke();
+            // }
+
+            // function drawPattern(){
+            //     var c = document.getElementById("canvas");
+            //     var ctx = c.getContext("2d");
+            //     var r = 100;
+            //     ctx.canvas.width = 300;
+            //     ctx.canvas.height = 300;
+            //     ctx.beginPath();
+            //     for(var i=0;i<91;i++){
+            //         ctx.lineTo(150+(r*Math.sin(i)), 150+(r*Math.cos(i)));
+            //     }
+            //     ctx.stroke();
+            // }
+
+        </script>
+    </body>
+</html>
